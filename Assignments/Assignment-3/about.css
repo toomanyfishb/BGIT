@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css?family=Mountains+of+Christmas&display=swap");
+
+header, section, footer, nav, {
+  display: block;
+}
+
+@keyframes slideBanner {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.banner {
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #df1238;
+  color: #f3e3e3;
+  width: 100%;
+  font-size: 1em;
+  padding: 10px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.banner span {
+  display: inline-block;
+  padding-left: 100%; /* Make sure the text starts from outside the right edge */
+  animation: slideBanner 15s linear infinite; /* Adjust time as per your preference */
+}
+
+body {
+  color: black;
+  background-color: rgb(1, 32, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.4em;
+  margin: 0;
+  text-align: justify;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border: 3px dashed #df1238;
+  background-color: #f3e3e3;
+  padding: 10px;
+}
+
+header {
+  background-image: url("https://hips.hearstapps.com/hmg-prod/images/christmas-tree-lights-1607346641.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=2048:*");
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+header h1 {
+  font-family: 'Mountains of Christmas', cursive;
+  color: #f3e3e3;
+  text-shadow: 2px 2px 4px black;
+  font-size: 60px;
+  text-align: center;
+  line-height: 200px;
+  margin: 0;
+}
+
+nav, footer {
+  clear: both;
+  background-color: #df1238;
+  text-align: center;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+  line-height: 50px;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav li a {
+  color: #f3e3e3;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+nav li a:hover{
+  color: black;
+  text-decoration: underline;
+}
+
+/* Main Content */
+
+main {
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img.profile {
+  margin: 20px 20px;
+  display: block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: #df1238 5px solid;
+}
+
+h3, h2 {
+  font-family: 'Mountains of Christmas', cursive;
+}
+
+ul {
+  list-style-type: square;
+}
+
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+  img {
+    max-width: 100%;
+  }
+  p {
+    font-size: 14px ;
+  }
+}

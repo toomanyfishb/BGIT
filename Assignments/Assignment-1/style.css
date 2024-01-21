@@ -1,0 +1,25 @@
+/*Header*/
+header {
+    background-color: darkmagenta;
+    color: lavender;
+    padding: 20px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/*Main*/
+
+body {
+    background-color: #fcebf3;
+    color: black;
+    padding: 20px;
+    display: grid;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+ img {
+    align-items: center;
+ }
+
+ hr {
+    color: black;
+ }

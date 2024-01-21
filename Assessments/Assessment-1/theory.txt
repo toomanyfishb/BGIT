@@ -1,0 +1,24 @@
+Theory Answers
+
+HTML Basics
+1. The purpose of HTML is to provide a way to define the structure of the elements on a webpage
+2. The <div> element is a block level element used to create a section. The <span> element is an inline element used to
+   create a section.
+3. Semantic HTML helps to provide context to different content within them. For example, <header> for heading and <nav>
+   for navigation bar items.
+
+CSS Fundamentals
+1. Margin is for space outside an element which can help to create borders around an element. Padding is for space
+  inside an element which can help to create space between an element and its border.
+2. Box model describes how elements are rendered on a webpage, specifically regarding spacing, layout and dimensions.
+3. CSS specificity hierarchy is a way to determine which CSS rule takes hierarchy.
+
+Responsive Design
+1. Media query allows you to apply different CSS styles based on characteristics of the device that te webpage is being
+   accessed on. It is used in responsive design to make sure that the content of the webpage responds to a different
+   screen size by shifting around the screen to make the contents easier to read.
+2. Responsive deign uses fluid grids, flexible images and media queries to adjust the content based on the screen size.
+   Adaptive design involves creating multiple fixed layouts targeting specific device categories. Responsive design is
+   more fluid and flexible as it adjusts in real time while adaptive design relies on predefined layouts for specific
+   screen types (e.g. phone, tablet, laptop).
+3. The viewport refers to the visible area of a webpage within the browser window.

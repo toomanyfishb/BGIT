@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato:wght@300&display=swap'); /* This is a font style I really enjoy using */
+
+/*Header*/
+header {
+  font-size: x-large;
+  background-color: #111111;
+  color: #000000;
+  padding: 10px;
+  text-align: center;
+  font-family: 'Fredoka One', 'cursive';
+}
+
+/*Navigation Bar*/
+nav {
+  background-color: #111111;
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Fredoka One', 'cursive';
+  border: 20px gray;
+  border-radius: 20px 20px 20px 20px;
+  font-style: italic;
+}
+
+nav li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #FCEBF3;
+  text-decoration: none;
+  padding: 10px;
+}
+
+nav ul li a:hover {
+  background-color: #FCEBF3;
+  color: #111111;
+  border-radius: 20px 20px 20px 20px;
+  text-decoration: underline black;
+}
+
+/*Main*/
+
+/*Body*/
+h2 {
+  font-family: 'Fredoka One', 'cursive';
+  text-align: center;
+}
+
+.fashion-header-image {
+  display: inline-block;
+  margin: auto;
+}
