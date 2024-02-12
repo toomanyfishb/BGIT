@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation Example</title>
+    <style>
+        body {
+        transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+<!-- HTML content -->
+    <button id="red-button">Click Me!</button>
+
+    <script>
+    const redButton = document.getElementById('red-button');
+    redButton.addEventListener('click', () => {
+     document.body.style.backgroundColor = 'red';
+     });
+    </script>
+</body>
+</html>
