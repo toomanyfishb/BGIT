@@ -1,1 +1,53 @@
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: navy;
+    color: pink;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: pink;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+section {
+    padding: 20px;
+}
+
+footer {
+    background-color: navy;
+    color: pink;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Additional styling for Home Page */
+.featured {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Additional styling for Find My Anime Page */
+.questionnaire {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Additional styling for How to Use Me Page */
+.instructions {
+    max-width: 600px;
+    margin: 0 auto;
+}
