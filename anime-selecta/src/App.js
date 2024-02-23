@@ -5,20 +5,41 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [featuredAnime, setFeaturedAnime] = useState([]);
   const [randomAnime, setRandomAnime] = useState(null);
+  const [selectedAnimeForDescription, setSelectedAnimeForDescription] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch featured anime
     fetchFeaturedAnime();
-
-    // Fetch random anime
     fetchRandomAnime();
   }, []);
 
   const fetchFeaturedAnime = async () => {
     try {
-      const response = await fetch('https://api.jikan.moe/v3/top/anime/1');
-      const data = await response.json();
-      setFeaturedAnime(data.top.slice(0, 6));
+      const response = await fetch('https://graphql.anilist.co', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              Page(page: 1, perPage: 6) {
+                media(type: ANIME, sort: POPULARITY_DESC) {
+                  id
+                  title { romaji }
+                  description
+                  coverImage { medium }
+                  averageScore
+                  episodes
+                }
+              }
+            }
+          `
+        })
+      });
+      const { data } = await response.json();
+      setFeaturedAnime(data?.Page?.media || []);
     } catch (error) {
       console.error('Error fetching featured anime:', error);
     }
@@ -26,16 +47,45 @@ function App() {
 
   const fetchRandomAnime = async () => {
     try {
-      const response = await fetch('https://api.jikan.moe/v3/anime/' + Math.floor(Math.random() * 5000) + '/stats');
-      const data = await response.json();
-      setRandomAnime(data);
+      const response = await fetch('https://graphql.anilist.co', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            query {
+              Media(id: ${Math.floor(Math.random() * 20000)}) {
+                title { romaji }
+                description
+                coverImage { medium }
+                averageScore
+                episodes
+              }
+            }
+          `
+        })
+      });
+      const { data } = await response.json();
+      setRandomAnime(data?.Media || null);
     } catch (error) {
       console.error('Error fetching random anime:', error);
     }
   };
 
-  const handleSearch = async () => {
-    // Implement search functionality here
+  const handleAnimeClick = (anime) => {
+    setSelectedAnimeForDescription(anime);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedAnimeForDescription(null);
+    setIsModalOpen(false);
+  };
+
+  const handleRandomize = () => {
+    fetchRandomAnime();
   };
 
   return (
@@ -48,15 +98,13 @@ function App() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
       </header>
       <section className="FeaturedAnime">
         <h2>Featured Anime</h2>
         <div className="AnimeList">
           {featuredAnime.map((anime) => (
-            <div key={anime.mal_id} className="AnimeCard">
-              <img src={anime.image_url} alt={anime.title} />
-              <p>{anime.title}</p>
+            <div key={anime.id}>
+              <AnimeCard anime={anime} onClick={() => handleAnimeClick(anime)} />
             </div>
           ))}
         </div>
@@ -64,16 +112,47 @@ function App() {
       <section className="RandomAnime">
         <h2>Random Anime</h2>
         {randomAnime && (
-          <div className="AnimeCard">
-            <p>{randomAnime.title}</p>
-            <p>Episodes: {randomAnime.episodes}</p>
-            <p>Score: {randomAnime.score}</p>
+          <div>
+            <AnimeCard anime={randomAnime} onClick={() => handleAnimeClick(randomAnime)} />
           </div>
         )}
+        <button onClick={handleRandomize} className="RandomizeButton">Randomize</button>
       </section>
+      {selectedAnimeForDescription && isModalOpen && (
+        <AnimeDescriptionModal anime={selectedAnimeForDescription} onClose={handleCloseModal} />
+      )}
+      <footer className="Footer">
+        <p>© 2024 Anime Selecta</p>
+        <p>Created by Mobolaji Babalola</p>
+      </footer>
     </div>
   );
 }
 
-export default App;
 
+const AnimeCard = ({ anime, onClick }) => (
+  <div className="AnimeCard" onClick={onClick}>
+    <img src={anime.coverImage.medium} alt={anime.title.romaji} />
+    <p>{anime.title.romaji}</p>
+  </div>
+);
+
+const AnimeDescriptionModal = ({ anime, onClose }) => (
+  <div className="AnimeDescriptionModal">
+    <div className="ModalContent">
+      <span className="CloseButton" onClick={onClose}>×</span>
+      <h2>{anime.title.romaji}</h2>
+      <div className="Description">
+        <p><strong>Description:</strong></p>
+        <p>{anime.description}</p>
+      </div>
+      <div className="Info">
+        <p><strong>Episodes:</strong> {anime.episodes}</p>
+        <p><strong>Average Score:</strong> {anime.averageScore}</p>
+      </div>
+    </div>
+  </div>
+);
+
+
+export default App;
